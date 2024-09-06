@@ -1,17 +1,31 @@
 import { useState, useEffect } from 'react';
-import { RestPeriodListRepository } from '../../infrastructure/adapters/rest/RestPeriodRepository';
-import { GetPeriods } from '../../core/use-cases/GetPeriods';
+import { RestPeriodRepository } from '../../infrastructure/adapters/rest/RestPeriodRepository';
+import { GetPeriods } from '../../core/use-cases/Periods/GetPeriods';
 import { Period } from '../../core/entities/Period';
 
-export const usePeriods = (): Period[] => {
+export const usePeriods = () => {
     const [periods, setPeriods] = useState<Period[]>([]);
 
-    useEffect(() => {
-        const periodRepository = new RestPeriodListRepository();
-        const getPeriods = new GetPeriods(periodRepository);
+    const loadPeriods = async () => {
+        const periodRepository = new RestPeriodRepository();
+        try {
+            const getPeriods = new GetPeriods(periodRepository);
+            getPeriods.execute().then(setPeriods);
+        } catch (error) {
+            console.error('Error al cargar los períodos:', error);
+        }
+    }
 
-        getPeriods.execute().then(setPeriods);
+    // useEffect(() => {
+    //     const periodRepository = new RestPeriodRepository();
+    //     const getPeriods = new GetPeriods(periodRepository);
+
+    //     getPeriods.execute().then(setPeriods);
+    // }, []);
+
+    useEffect(() => {
+        loadPeriods();
     }, []);
 
-    return periods;
+    return { periods, loadPeriods };
 };

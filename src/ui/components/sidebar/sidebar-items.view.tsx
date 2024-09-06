@@ -18,6 +18,7 @@ import {
 	TbUsersGroup,
 	TbWebhook,
 	TbFileDots,
+    TbCalendarFilled
 } from 'react-icons/tb';
 import {
     PERIODS_LIST_ROUTE
@@ -65,7 +66,7 @@ interface LinkItemProps {
 export function SidebarItems() {
 
 	const LinkItems: Array<LinkItemProps> = [
-		{ to: PERIODS_LIST_ROUTE, name: 'Periods', icon: TbMoneybag },
+		{ to: PERIODS_LIST_ROUTE, name: 'Periodes', icon: TbCalendarFilled },
 	];
 
 	return (

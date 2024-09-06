@@ -16,7 +16,7 @@ export default function Header() {
 		>
 			<Flex h="60px" alignItems="center" mx="4" justifyContent="space-between" p={3}>
 				<Link to={DASHBOARD_ROUTE} style={{ display: 'inline-block', height: '100%' }}>
-					<Image height="100%" src="/backoffice/img/logo.png" />
+					<Image height="100%" src="/img/logo.png" />
 				</Link>
 
 				{/* {getUserInfoQuery.data?.name} */}

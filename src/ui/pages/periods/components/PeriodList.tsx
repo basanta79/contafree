@@ -3,9 +3,14 @@ import { usePeriods } from '../../../hooks/usePeriods';
 import { Box, Button, Grid, Heading } from '@chakra-ui/react';
 import TableElement from '../../../elements/table.elements';
 import { useReactTable, getCoreRowModel } from '@tanstack/react-table';
+import { Period } from '../../../../core/entities/Period';
 
-export const PeriodList: React.FC = () => {
-    const periods = usePeriods();
+interface PeriodListProps {
+    periods: Array<Period>;
+}
+
+export const PeriodList: React.FC<PeriodListProps> = ({ periods }) => {
+    // const periods = usePeriods();
 
     const columns = React.useMemo(() => [
         {
@@ -26,11 +31,7 @@ export const PeriodList: React.FC = () => {
 
     return (
         <Grid gridTemplateRows="auto 1fr auto">
-			<Grid gridTemplateColumns="auto 1fr auto" alignItems="center" mb={8} gap={4}>
-				<Heading as="h1" size="lg">
-					Periods
-				</Heading>
-            </Grid>
+
 
             <Box overflow="auto">
 				<TableElement table={table} />
